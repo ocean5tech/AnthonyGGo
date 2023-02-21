@@ -1,5 +1,5 @@
 
-POST http://localhost:8082/account HTTP/1.1
+POST http://localhost:9090/account HTTP/1.1
 content-type: application/json
 
 {
@@ -9,25 +9,32 @@ content-type: application/json
 
 ###
 
-get http://localhost:8082/account HTTP/1.1
+get http://localhost:9090/account HTTP/1.1
 content-type: application/json  
 
 ###
 
-get http://localhost:8082/account/2 HTTP/1.1
+get http://localhost:9090/account/2 HTTP/1.1
 content-type: application/json  
 
 ###
 
-delete http://localhost:8082/account/3 HTTP/1.1
+delete http://localhost:9090/account/3 HTTP/1.1
 content-type: application/json  
 
 ###
 
-post http://localhost:8082/transfer HTTP/1.1
+post http://localhost:9090/transfer HTTP/1.1
 content-type: application/json  
 
 {
     "toAccount": 3439,
     "amount": 8970
 }
+
+
+###
+
+delete http://localhost:9090/account/2 HTTP/1.1
+content-type: application/json  
+x-jwt-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYmYiOjE0NDQ0Nzg0MDB9.u1riaD1rW97opCoAuRCTy4w58Br-Zk-bh7vLiRIsrpU

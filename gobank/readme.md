@@ -59,3 +59,15 @@ https://pkg.go.dev/github.com/golang-jwt/jwt/v4
 ## JWT Secret
 1. windows : set environment variables
 2. Linux: export JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYmYiOjE0NDQ0Nzg0MDB9.u1riaD1rW97opCoAuRCTy4w58Br-Zk-bh7vLiRIsrpU
+
+
+## ssh无法连接，报错“Socket error Event: 32 Error: 10053.”
+
+restart 路由器
+
+## listen tcp :8082: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
+1. check if the port8082 is excluded by tcp
+    netsh interface ipv4 show excludedportrange protocol=tcp
+
+2. Change Port OR change excludeportrange
+    netsh int ipv4 set dynamicport tcp start=50000 num=500

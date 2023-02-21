@@ -94,7 +94,16 @@ func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) 
 	if err := s.store.CreateAccount(account); err != nil {
 		return err
 	}
+
+	tokenString, err := createJWT(account)
+	if err != nil {
+		return err
+	}
 	return WriteJSON(w, http.StatusOK, account)
+}
+
+func createJWT(account *Account) (*jwt.Token, error) {
+
 }
 
 func (s *APIServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) error {
@@ -130,24 +139,33 @@ func WriteJSON(w http.ResponseWriter, status int, v any) error {
 func withJWTAuth(handleFunc http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Calling JWT Auth middleware")
+
+		tokenString := r.Header.Get("x-jwt-token")
+
+		_, err := validateJWT(tokenString)
+		if err != nil {
+			WriteJSON(w, http.StatusForbidden, ApiError{Error: "Invalid token"})
+			return
+		}
+
 		handleFunc(w, r)
 	}
 }
 
 // const jwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYmYiOjE0NDQ0Nzg0MDB9.u1riaD1rW97opCoAuRCTy4w58Br-Zk-bh7vLiRIsrpU"
 
-func validateJWT(tokenString) (*jwt.Token, error) {
+func validateJWT(tokenString string) (*jwt.Token, error) {
 
-	jwtSecret := os.Getenv("JWT_SECRET")
+	secret := os.Getenv("JWT_SECRET")
 
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+	return jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
 
 		// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
-		return hmacSampleSecret, nil
+		return []byte(secret), nil
 	})
 }
 
