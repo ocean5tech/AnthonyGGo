@@ -1,2 +1,33 @@
-get http://localhost:8082/account HTTP/1.1
+
+POST http://localhost:8082/account HTTP/1.1
 content-type: application/json
+
+{
+    "firstname": "bob2",
+    "lastname": "moss2"
+}
+
+###
+
+get http://localhost:8082/account HTTP/1.1
+content-type: application/json  
+
+###
+
+get http://localhost:8082/account/2 HTTP/1.1
+content-type: application/json  
+
+###
+
+delete http://localhost:8082/account/3 HTTP/1.1
+content-type: application/json  
+
+###
+
+post http://localhost:8082/transfer HTTP/1.1
+content-type: application/json  
+
+{
+    "toAccount": 3439,
+    "amount": 8970
+}
