@@ -14,10 +14,18 @@ POST http://localhost:9090/login HTTP/1.1
 content-type: application/json
 
 {
-    "number": 4567890,
-    "password": "Testpassword"
+    "number": 8498081,
+    "password": "hunter88888"
 }
+###
 
+POST http://localhost:9090/login HTTP/1.1
+content-type: application/json
+
+{
+    "number": 8498082,
+    "password": "hunter888881"
+}
 ###
 
 get http://localhost:9090/account HTTP/1.1

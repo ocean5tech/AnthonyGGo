@@ -93,3 +93,10 @@ JWT Token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TnVtYmVyIjo4NDk4MDg
 ## Debug tip
 panic("dd") 
 panic(relfect.TypeOf(claims["accountNumber"]))
+
+
+## seeding db --- if [--seed] not working , make a shortcut in windows
+
+seeding the database
+new account =>  8498081
+2023/02/22 21:55:21 JSON API Server running on port:  :9090
