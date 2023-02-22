@@ -3,8 +3,19 @@ POST http://localhost:9090/account HTTP/1.1
 content-type: application/json
 
 {
-    "firstname": "bob2",
-    "lastname": "moss2"
+    "firstName": "JWT",
+    "lastName": "Test"
+}
+
+
+###
+
+POST http://localhost:9090/login HTTP/1.1
+content-type: application/json
+
+{
+    "number": 4567890,
+    "password": "Testpassword"
 }
 
 ###
@@ -14,12 +25,12 @@ content-type: application/json
 
 ###
 
-get http://localhost:9090/account/2 HTTP/1.1
+get http://localhost:9090/account/12 HTTP/1.1
 content-type: application/json  
-
+x-jwt-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TnVtYmVyIjo4NDk4MDgxLCJleHBpcmVzQXQiOjE1MDAwfQ.DkQ7O_10WnExoVTQt1AKiS1rECVQiZWnm8DTlU508U8
 ###
 
-delete http://localhost:9090/account/3 HTTP/1.1
+delete http://localhost:9090/account/14 HTTP/1.1
 content-type: application/json  
 
 ###

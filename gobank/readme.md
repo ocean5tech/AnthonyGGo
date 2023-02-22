@@ -71,3 +71,25 @@ restart 路由器
 
 2. Change Port OR change excludeportrange
     netsh int ipv4 set dynamicport tcp start=50000 num=500
+
+
+## SCERET
+secret -->> eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJuYmYiOjE0NDQ0Nzg0MDB9.u1riaD1rW97opCoAuRCTy4w58Br-Zk-bh7vLiRIsrpU
+
+[]byte(secret)  --->> [101 121 74 104 98 71 99 105 79 105 74 73 85 122 73 49 78 105 73 115 73 110 82 53 99 67 73 54 73 107 112 88 86 67 74 57 46 101 121 74 109 98 50 56 105 79 105 74 105 89 88 73 105 76 67 74 117 89 109 89 105 79 106 69 48 78 68 81 48 78 122 103 48 77 68 66 57 46 117 49 114 105 97 68 49 114 87 57 55 111 112 67 111 65 117 82 67 84 121 52 119 53 56 66 114 45 90 107 45 98 104 55 118 76 105 82 73 115 114 112 85]
+
+
+## JWT  : 使用jwt-go的时候遇到了一个报错
+1. 注意tokenClaims.SignedString(jwtSecret)的参数jwtSecret为[]byte()而不是string
+2. 注意jwt.NewWithClaims的加密方法用的是jwt.SigningMethodHS256而不是jwt.SigningMethodES256
+
+## JWT TEST
+
+&{dc:0xc000164090 releaseConn:0xacd300 rowsi:0xc000001680 cancel:<nil> closeStmt:<nil> closemu:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0} closed:false lasterr:<nil> lastcols:[]}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TnVtYmVyIjo4NDk4MDgxLCJleHBpcmVzQXQiOjE1MDAwfQ.DkQ7O_10WnExoVTQt1AKiS1rECVQiZWnm8DTlU508U8
+<nil>
+JWT Token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50TnVtYmVyIjo4NDk4MDgxLCJleHBpcmVzQXQiOjE1MDAwfQ.DkQ7O_10WnExoVTQt1AKiS1rECVQiZWnm8DTlU508U8
+
+## Debug tip
+panic("dd") 
+panic(relfect.TypeOf(claims["accountNumber"]))
